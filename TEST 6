@@ -1,0 +1,97 @@
+from abc import ABC, abstractmethod
+
+
+class Vehicle(ABC):
+
+    @abstractmethod
+    def toll(self):
+        pass
+
+
+class TwoWheeler(Vehicle):
+
+    def __init__(self, persons):
+        self.persons = persons
+
+    def toll(self):
+        basic = 20
+        extra = 0
+
+        if self.persons > 2:
+            extra = (self.persons - 2) * 10
+
+        return basic + extra
+
+
+class ThreeWheeler(Vehicle):
+
+    def __init__(self, persons):
+        self.persons = persons
+
+    def toll(self):
+        basic = 30
+        extra = 0
+
+        if self.persons > 3:
+            extra = (self.persons - 3) * 20
+
+        return basic + extra
+
+
+class FourWheeler(Vehicle):
+
+    def __init__(self, persons):
+        self.persons = persons
+
+    def toll(self):
+        basic = 40
+        extra = 0
+
+        if self.persons > 4:
+            extra = (self.persons - 4) * 40
+
+        return basic + extra
+
+
+class HeavyVehicle(Vehicle):
+
+    def __init__(self, persons):
+        self.persons = persons
+
+    def toll(self):
+        basic = 60
+        extra = 0
+
+        if self.persons > 6:
+            extra = (self.persons - 6) * 100
+
+        return basic + extra
+
+
+# Main program
+
+print("1. Two Wheeler")
+print("2. Three Wheeler")
+print("3. Four Wheeler")
+print("4. Heavy Vehicle")
+
+choice = int(input("Enter vehicle type: "))
+persons = int(input("Enter number of persons: "))
+
+if choice == 1:
+    v = TwoWheeler(persons)
+
+elif choice == 2:
+    v = ThreeWheeler(persons)
+
+elif choice == 3:
+    v = FourWheeler(persons)
+
+elif choice == 4:
+    v = HeavyVehicle(persons)
+
+else:
+    print("Invalid choice")
+    exit()
+
+print("Total Toll =", v.toll())
